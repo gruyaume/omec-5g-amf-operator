@@ -1,0 +1,27 @@
+name: omec-5g-amf-operator
+
+display-name: 5G AMF Operator
+
+summary: 5G Access Management Function (AMF) Operator
+
+description: |
+  5G Access Management Function (AMF) is a core component of the 5G core network.
+
+containers:
+  amf:
+    resource: amf-image
+    mounts:
+      - storage: config
+        location: /free5gc/config
+
+resources:
+  amf-image:
+    type: oci-image
+    description: OCI image for amf
+    upstream-source: docker.io/omecproject/5gc-amf@sha256:39c3f60c3941f7b990fa66297ab7388d9764a3127b75f72b7ede87569d82881e
+
+storage:
+  config:
+    type: filesystem
+    description: AMF config storage
+    minimum-size: 1M
